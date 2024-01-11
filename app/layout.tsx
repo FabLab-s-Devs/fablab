@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Manrope } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import './globals.css'
 
-const manrope = Manrope({ subsets: ['latin'] })
+const poppins = Poppins({ subsets: ['latin'], weight:["400", "600", "700", "500", "200", "300"] })
 
 export const metadata: Metadata = {
   title: 'Fablab Universiapolis',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={manrope.className}>{children}</body>
+      <body className={poppins.className}>{children}</body>
     </html>
   )
 }

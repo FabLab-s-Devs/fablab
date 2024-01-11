@@ -2,29 +2,113 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --text: hsl(0, 0%, 6%);
-  --background: hsl(240, 12%, 97%);
-  --primary: hsl(230, 47%, 32%);
-  --secondary: hsl(36, 84%, 53%);
-  --accent: hsl(6, 74%, 41%);
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-  --text: hsl(0, 0%, 94%);
-  --background: hsl(240, 13%, 3%);
-  --primary: hsl(230, 47%, 68%);
-  --secondary: hsl(36, 84%, 47%);
-  --accent: hsl(6, 74%, 59%);
+@layer utilities {
+  @responsive {
+    .container-s {
+      width: 100%;
+      margin-inline: auto;
+      padding-inline: 40px;
+    }
+    .container-t {
+      padding-inline: 50px;
+    }
+    .container-pc {
+      max-width: 900px;
+      padding-inline: 90px;
+    }
+  }
+  .heroBg {
+    position: relative;
+  }
+  .heroBg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/assets/hero-image.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: brightness(0.5);
+    z-index: -1;
   }
 }
 
-*, ::after, ::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-body {
-  overflow-x: hidden;
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 234, 20%, 32%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 40, 90%, 52%;
+    --primary-foreground: 0 0% 99%;
+ 
+    --secondary: 234, 80%, 32%;
+    --secondary-foreground: 0 0% 99%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+ 
+@layer base {
+  *, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
 }
