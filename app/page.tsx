@@ -1,9 +1,9 @@
-import Hero from "@/components/hero/Hero";
-import Header from "../components/header/Header";
-import Pillars from "@/components/pillars/Pillars";
-import Spaces from "@/components/spaces/Spaces";
-import Faq from "@/components/faq/Faq";
-import Footer from "@/components/footer/Footer";
+import Hero from "@/components/rootpage/hero/Hero";
+import Header from "../components/rootpage/header/Header";
+import Pillars from "@/components/rootpage/pillars/Pillars";
+import Spaces from "@/components/rootpage/spaces/Spaces";
+import Faq from "@/components/rootpage/faq/Faq";
+import Footer from "@/components/rootpage/footer/Footer";
 
 export default function Home() {
   return (
