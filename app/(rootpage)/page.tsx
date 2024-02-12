@@ -4,6 +4,7 @@ import Pillars from "@/components/rootpage/pillars/Pillars";
 import Spaces from "@/components/rootpage/spaces/Spaces";
 import Faq from "@/components/rootpage/faq/Faq";
 import Footer from "@/components/rootpage/footer/Footer";
+import Projects from "@/components/rootpage/projects/projects";
 
 export default function Home() {
   return (
@@ -12,8 +13,9 @@ export default function Home() {
       <Hero/>
       <Pillars/>
       <Spaces/>
+      <Projects/>
       <Faq/>
-      <Footer/>
+      <Footer/> 
     </main>
   )
 }
