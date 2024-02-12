@@ -47,7 +47,6 @@ function Projects() {
                 }
                 </div>
                 <button className="underline text-3xl p-4 font-sans">See More...</button>
-
             </div>
         </div>
     )
