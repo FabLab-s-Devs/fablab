@@ -30,7 +30,7 @@ const page = () => {
 
             </p>
           </div>
-
+ 
         </div>
       </div>
     </div>
