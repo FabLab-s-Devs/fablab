@@ -1,14 +1,13 @@
-// import Footer from '@/components/rootpage/footer/Footer'
-// import Header from '@/components/rootpage/header/Header'
+
+
+import React from 'react'
 
 const page = () => {
-  return (
-    <div>
-      <p>
-        LISTE PROJECTS
-      </p>
-    </div>
-  )
+    return (
+        <div>
+            zfzfzf  
+        </div>
+    )
 }
- 
-export default page
+
+export default page;
