@@ -1,7 +1,7 @@
-import { newscard } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { newscard } from "@/lib/interface";
 import Image from "next/image"
 import Link from "next/link";
 
@@ -44,7 +44,7 @@ export default async function News() {
           {post && (
             <>
               <Image
-                src={urlFor(post.postimage).url()}
+                src={urlFor(post.imageUrl).url()}
                 alt="image"
                 width={500}
                 height={500}
@@ -57,7 +57,7 @@ export default async function News() {
                   {post.description}
                 </p>
                 <Button asChild className="w-full mt-5">
-                  <Link href={`/projects/${post.slug}`}>Read more</Link>
+                  <Link href={`/projects/${post.currentslug}`}>Read more</Link>
                 </Button>
               </CardContent>
             </>
