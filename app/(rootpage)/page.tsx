@@ -3,6 +3,7 @@ import Pillars from "@/components/rootpage/pillars/Pillars";
 import Spaces from "@/components/rootpage/spaces/Spaces";
 import Faq from "@/components/rootpage/faq/Faq";
 import Projects from "@/components/rootpage/projects/Projects";
+import News from "@/components/news/News";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Pillars/>
       <Spaces/>
       <Projects/>
+      <News/>
       <Faq/>
     </div>
   )
