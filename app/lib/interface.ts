@@ -7,3 +7,13 @@ export interface simpleBlogCard {
     content: any;
     show: boolean;
 }
+
+export interface simplenewsCard {
+    title: string;
+    slug: String;
+    description: string;
+    currentSlug: string;
+    postimage: string;
+    content: string;
+    show: boolean;
+}
