@@ -3,7 +3,7 @@ import { client, urlFor } from "../../lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { newscard } from "@/lib/interface";
+import { simplenewsCard } from "@/app/lib/interface";
 
 async function getData() {
   const query = `*[_type == 'news']{
@@ -20,8 +20,7 @@ async function getData() {
 }
 
 export default async function Home() {
-  const data: newscard[] = await getData();
-  console.log(data);
+  const data: simplenewsCard[] = await getData();
   
   return (
     <div className="grid grid-cols-1 laptop:grid-cols-3 pc:grid-cols-4 tablet:grid-cols-2 mt-5 gap-5 mb-20">

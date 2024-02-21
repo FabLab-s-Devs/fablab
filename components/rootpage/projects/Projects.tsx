@@ -5,23 +5,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image"
 import Link from "next/link";
 
-const ProjectsData: { title: string, source: string, description: string }[] = [
-    {
-        source: "/assets/projects/project1.jpg",
-        title: "Hackathon Winners",
-        description: "Le Premier Prix du Hackathon #Universiapolis accueille des étudiants de l' #polytechnique_agadir (un appareil du #fablab ) pour projeter du CGM pour prévenir les hypo/hyperglycémies et proposer des doses de correction. Un chèque de 10 000 dirhams a été offert par #Akkodis Maroc et un forfait incubation d'une valeur de 30 000 dirhams à #lastartupstation Bravo à ceux qui le recherchent !"
-    },
-    {
-        source: "/assets/projects/project1.jpg",
-        title: "Hackathon Winners",
-        description: "Le Premier Prix du Hackathon #Universiapolis accueille des étudiants de l' #polytechnique_agadir (un appareil du #fablab ) pour projeter du CGM pour prévenir les hypo/hyperglycémies et proposer des doses de correction. Un chèque de 10 000 dirhams a été offert par #Akkodis Maroc et un forfait incubation d'une valeur de 30 000 dirhams à #lastartupstation Bravo à ceux qui le recherchent !"
-    }
-]
 async function getData() {
     const query = `*[_type == 'project' && show]{
       title,
       "slug":slug.current,
-      content,
       description,
       projectimage,
       show
@@ -36,7 +23,6 @@ async function getData() {
 
 export default async function Projects() {
     const data: simpleBlogCard[] = await getData();
-    console.log(data);
     return (
         <div className='container-s tablet:container-t laptop:container-pc relative pt-10 pb-5'>
             <div className='flex flex-col text-center  items-center justify-center'>

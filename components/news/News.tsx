@@ -1,22 +1,14 @@
 import { client, urlFor } from "@/app/lib/sanity";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { newscard } from "@/lib/interface";
+import { simplenewsCard } from "@/app/lib/interface";
 import Image from "next/image"
 import Link from "next/link";
 
-const ProjectsData: { title: string, source: string, description: string }[] = [
-    {
-        source: "/assets/projects/fablab.jpg",
-        title: " hiuhkjhjnikjhb",
-        description: "Le Premier Prix du Hackathon #Universiapolis accueille des étudiants de l' #polytechnique_agadir (un appareil du #fablab ) pour projeter du CGM pour prévenir les hypo/hyperglycémies et proposer des doses de correction. Un chèque de 10 000 dirhams a été offert par #Akkodis Maroc et un forfait incubation d'une valeur de 30 000 dirhams à #lastartupstation Bravo à ceux qui le recherchent !"
-    }
-]
 async function getData() {
     const query = `*[_type == 'news' && show]{
       title,
       "slug":slug.current,
-      content,
       description,
       postimage,
       show
@@ -30,8 +22,7 @@ async function getData() {
 
 
 export default async function News() {
-    const data: newscard[] = await getData();
-    console.log(data);
+    const data: simplenewsCard[] = await getData();
     return (
         <div className='container-s tablet:container-t laptop:container-pc relative pt-10 pb-5'>
             <div className='flex flex-col text-center  items-center justify-center'>
@@ -44,7 +35,7 @@ export default async function News() {
           {post && (
             <>
               <Image
-                src={urlFor(post.imageUrl).url()}
+                src={urlFor(post.postimage).url()}
                 alt="image"
                 width={500}
                 height={500}
@@ -57,7 +48,7 @@ export default async function News() {
                   {post.description}
                 </p>
                 <Button asChild className="w-full mt-5">
-                  <Link href={`/projects/${post.currentslug}`}>Read more</Link>
+                  <Link href={`/news/${post.slug}`}>Read more</Link>
                 </Button>
               </CardContent>
             </>
