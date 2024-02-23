@@ -1,9 +1,9 @@
 "use client"
 import { useState } from "react"
 import Link from "next/link"
-import { format } from "date-fns"
+import { endOfWeek, format, isSunday, isWithinInterval, startOfWeek } from "date-fns"
 import { DialogTrigger, Dialog, DialogContent } from "@/components/ui/dialog"
-import { cn, nextweek } from "@/lib/utils"
+import { cn, filterReservationsForWeek, getWeekDate, nextweek } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import {
@@ -12,13 +12,17 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { IoCalendarOutline as CalendarIcon } from "react-icons/io5";
-import { getReservations } from "@/lib/actions/reservation.actions"
+import { getReservations, getPeriodCountByDate } from "@/lib/actions/reservation.actions"
 
 function Hero() {
 
     const [date, setDate] = useState<Date>()
-    const onClick = async () => {
-        console.log(await getReservations("65d7966d2afb3573065d70b1", "2024-03-01"));
+    const getPeriodCount = async () => {
+        const fmDate = format(date || new Date(), "yyyy/MM/dd");
+        const reservations = await getReservations("65d7966d2afb3573065d70b1");
+        const res = filterReservationsForWeek(fmDate, reservations);
+
+        console.log(res);
     }
     return (
         <div className="container-s tablet:container-t laptop:container-pc heroBg py-5">
@@ -31,9 +35,6 @@ function Hero() {
                         Where Ideas Take Flight and Dreams Transform into Reality. Join Us Now
                     </p>
                 </div>
-                <button onClick={onClick}>
-                    test
-                </button>
                 <Dialog>
                     <DialogTrigger asChild>
                         <Link href="/" className="text-primary- font-medium px-2 py-2 bg-primary text-[12px] rounded-md shadow-cta">
@@ -65,7 +66,7 @@ function Hero() {
                                         selected={date}
                                         onSelect={setDate}
                                         disabled={(date) =>
-                                            date < new Date() || date > nextweek()
+                                            date < new Date() || isSunday(date) || !isWithinInterval(date, getWeekDate("2024/03/04"))
                                         }
                                         initialFocus
                                     />
@@ -77,7 +78,7 @@ function Hero() {
                             <button className="py-1 px-3 bg-slate-300/55 text-center text-background font-medium rounded-sm">
                                 prev
                             </button>
-                            <button className="py-1 px-3 bg-primary text-center text-background font-medium rounded-sm">
+                            <button onClick={getPeriodCount} className="py-1 px-3 bg-primary text-center text-background font-medium rounded-sm">
                                 next
                             </button>
                         </div>
