@@ -2,7 +2,7 @@
 
 import { connectToDB } from "@/lib/db/index";
 import Reservation, { IReservation } from "@/lib/db/models/reservation.model";
-import { filterReservationsForWeek } from "@/lib//utils";
+import { filterReservationsForWeek, getWeekDate } from "@/lib//utils";
 
 export async function createReservation({ teamId, date, place, period, status }: IReservation) {
     const teamRes = await getReservations(teamId);
@@ -64,10 +64,43 @@ export async function getReservation(resId: string) {
     }
 }
 
-export async function getPeriodCountByDate(date: string) {
+
+export async function getReservations(teamId?: string, date?: string, place?: string, week?: boolean) {
+    const filter: any  = {};
+
+    if (date) {
+        const weekDate = getWeekDate(date);
+        const startOfDay = week ? weekDate.start : new Date(date);
+        startOfDay.setHours(0, 0, 0, 0);
+
+        const endOfDay = week ? weekDate.end : new Date(date);
+        endOfDay.setHours(23, 59, 59, 999);
+
+        filter.date = { $gte: startOfDay, $lte: endOfDay };
+    }
+
+    if (teamId) {
+        filter.teamId = teamId
+    }
+
+    if (place) {
+        filter.place = place
+    }
+
     try {
         await connectToDB();
-        const reservations = await getReservations(undefined, date);
+        const reservations = await Reservation.find(filter);
+        return JSON.parse(JSON.stringify(reservations));
+    } catch (error) {
+        console.error('Failed to get reservation:', error);
+        throw error;
+    }
+}
+
+export async function getPeriodCountByDate(date: string, place?: string) {
+    try {
+        await connectToDB();
+        const reservations = await getReservations(undefined, date, place);
         const periodCount = {
             "1": 0,
             "2": 0,
@@ -88,30 +121,3 @@ export async function getPeriodCountByDate(date: string) {
     }
 }
 
-
-export async function getReservations(teamId?: string, date?: string) {
-    const filter: any  = {};
-
-    if (date) {
-        const startOfDay = new Date(date);
-        startOfDay.setHours(0, 0, 0, 0);
-
-        const endOfDay = new Date(date);
-        endOfDay.setHours(23, 59, 59, 999);
-
-        filter.date = { $gte: startOfDay, $lte: endOfDay };
-    }
-
-    if (teamId) {
-        filter.teamId = teamId
-    }
-
-    try {
-        await connectToDB();
-        const reservations = await Reservation.find(filter);
-        return JSON.parse(JSON.stringify(reservations));
-    } catch (error) {
-        console.error('Failed to get reservation:', error);
-        throw error;
-    }
-}

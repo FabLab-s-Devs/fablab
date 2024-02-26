@@ -19,9 +19,8 @@ function Hero() {
     const [date, setDate] = useState<Date>()
     const getPeriodCount = async () => {
         const fmDate = format(date || new Date(), "yyyy/MM/dd");
-        const reservations = await getReservations("65d7966d2afb3573065d70b1");
-        const res = filterReservationsForWeek(fmDate, reservations);
-
+        //const reservations = await getReservations("65d7966d2afb3573065d70b1");
+        const res = await getReservations("65d7966d2afb3573065d70b1", fmDate, "uia", true);
         console.log(res);
     }
     return (
@@ -66,7 +65,7 @@ function Hero() {
                                         selected={date}
                                         onSelect={setDate}
                                         disabled={(date) =>
-                                            date < new Date() || isSunday(date) || !isWithinInterval(date, getWeekDate("2024/03/04"))
+                                            date < new Date() || isSunday(date) || !isWithinInterval(date, getWeekDate("2024/02/26"))
                                         }
                                         initialFocus
                                     />
