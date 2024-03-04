@@ -12,7 +12,7 @@ export interface IReservation {
 const ReservationSchema = new Schema({
     teamId: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Team',
         required: true,
     },
     status: {

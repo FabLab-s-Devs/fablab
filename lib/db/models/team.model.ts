@@ -9,16 +9,13 @@ export interface ITeam {
 
 const teamSchema = new Schema({
     chefId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Student',
+        type: String,
         required: true,
         unique: true
     },
     supervisorId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Supervisor',
+        type: String,
         required: true,
-        unique: true
     },
     place: {
         type: String,
