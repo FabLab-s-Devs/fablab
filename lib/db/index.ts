@@ -14,8 +14,7 @@ export const connectToDB = async () => {
     dbName: 'fablab',
     bufferCommands: false,
   })
-  console.log(MONGODB_URI);
-  
+
   cached.conn = await cached.promise;
 
   return cached.conn;

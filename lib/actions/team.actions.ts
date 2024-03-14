@@ -3,16 +3,34 @@
 import { connectToDB } from "@/lib/db/index";
 import Team, { ITeam } from "@/lib/db/models/team.model";
 
-export async function createTeam({ chefId, supervisorId, place }: ITeam) {
+export async function createTeams(teams: ITeam[]) {
   try {
     await connectToDB();
-    
+    teams.forEach(async (teamInfo) => {
+      const team = await createTeam(teamInfo);
+      return JSON.parse(JSON.stringify(team));
+    })
+    console.log('Created team');
+  } catch (error) {
+    console.error('Failed to create teams:', error);
+    throw error;
+  }
+}
+
+export async function createTeam({ sg, theme, supervisor, chef, place, members }: ITeam) {
+  try {
+    await connectToDB();
+
     const team = await Team.create({
-        chefId,
-        supervisorId,
-        place,
-        createdAt: new Date(),
+      sg,
+      theme,
+      supervisor,
+      members,
+      chef,
+      place,
+      createdAt: new Date(),
     });
+    console.log('Created team');
     return JSON.parse(JSON.stringify(team));
   } catch (error) {
     console.error('Failed to create team:', error);
@@ -20,11 +38,11 @@ export async function createTeam({ chefId, supervisorId, place }: ITeam) {
   }
 }
 
-export async function getTeamByChef(chefId: string) {
+export async function getTeamByChef(chef: string) {
   try {
     await connectToDB();
 
-    const team = await Team.findOne({ chefId: chefId })
+    const team = await Team.findOne({ chef })
 
     return JSON.parse(JSON.stringify(team));
   } catch (error) {
@@ -33,11 +51,11 @@ export async function getTeamByChef(chefId: string) {
   }
 }
 
-export async function updateTeamByChef(searchEmail: string, teamDetails: ITeam) {
+export async function updateTeamByChef(chef: string, teamDetails: ITeam) {
   try {
     await connectToDB();
 
-    const updateResult = await Team.findOneAndUpdate({ chefId: searchEmail }, {
+    const updateResult = await Team.findOneAndUpdate({ chef }, {
       $set: teamDetails
     }).lean();
 
@@ -48,10 +66,10 @@ export async function updateTeamByChef(searchEmail: string, teamDetails: ITeam) 
   }
 }
 
-export async function removeTeam(chefId: string) {
+export async function removeTeam(chef: string) {
   try {
     await connectToDB();
-    const result = await Team.deleteOne({ chefId: chefId });
+    const result = await Team.deleteOne({ chef });
     return result;
   } catch (error) {
     console.error('Failed to remove team:', error);

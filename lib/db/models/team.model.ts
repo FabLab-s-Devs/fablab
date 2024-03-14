@@ -1,21 +1,37 @@
 import { Schema, model, models, Document } from 'mongoose';
 
 export interface ITeam {
-    chefId: string;
-    supervisorId: string;
-    place?: 'uia' | 'technopark';
+    sg: string;
+    theme: string;
+    chef: string;
+    supervisor: string;
+    members: string[];
+    place?: string;
     createdAt?: Date;
 }
 
 const teamSchema = new Schema({
-    chefId: {
+    sg: {
         type: String,
         required: true,
         unique: true
     },
-    supervisorId: {
+    theme: {
+        type: String,
+        required: true
+    },
+    chef: {
         type: String,
         required: true,
+        unique: true
+    },
+    supervisor: {
+        type: String,
+        required: true,
+    },
+    members: {
+        type: Array,
+        of: String
     },
     place: {
         type: String,

@@ -4,6 +4,8 @@ import Link from "next/link"
 import { useState } from "react"
 import PickDate from "@/components/rootpage/reserve/pickDate/pickDate"
 import PickPeriod from "@/components/rootpage/reserve/pickPeriod/pickPeriod"
+import { createTeam } from "@/lib/actions/team.actions"
+
 
 
 function ReserveButton() {
@@ -13,11 +15,8 @@ function ReserveButton() {
 
   const pages = [<PickDate date={date} setDate={setDate} />, <PickPeriod date={date} selectedPeriod={period} setSelectedPeriod={setPeriod} />]
 
-
   const nextButton = () => {
     if (pageIndex == pages.length - 1) {
-      console.log(date);
-      console.log(period);
       return;
     }
 
@@ -27,9 +26,9 @@ function ReserveButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Link href="/" className="text-primary- font-medium px-2 py-2 bg-primary text-[12px] rounded-md shadow-cta">
+        <button className="text-primary- font-medium px-2 py-2 bg-primary text-[12px] rounded-md shadow-cta">
           Reserve Now
-        </Link>
+        </button>
       </DialogTrigger>
 
       <DialogContent className="px-6 flex items-start justify-center max-w-96 rounded-md flex-col gap-6">
