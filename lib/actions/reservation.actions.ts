@@ -2,28 +2,51 @@
 
 import { connectToDB } from "@/lib/db/index";
 import Reservation, { IReservation } from "@/lib/db/models/reservation.model";
-import { filterReservationsForWeek, getWeekDate } from "@/lib//utils";
+import { getWeekDate } from "@/lib/utils";
+import { getTeam } from "@/lib/actions/team.actions";
 
-export async function createReservation({ teamId, date, place, period, status }: IReservation) {
-    const teamRes = await getReservations(teamId);
-    const res = filterReservationsForWeek(date, teamRes);
-
-    if (res.length == 2)
-        return (-1);
+export async function createReservation({ teamId, date, period }: IReservation) {
     try {
+        const team = await getTeam(teamId);
+        if (!team)
+            return { error: "You should have a team" };
+
+        const teamRes = await getReservations(teamId, date, team.place, true);
+
+        
+        // Check if a reservation exists for today
+        const selctedDate = new Date(date);
+        selctedDate.setHours(0, 0, 0, 0);
+        const hasReservationToday = teamRes.some((reservation: { date: string | number | Date; }) => {
+            
+            const resDate = new Date(reservation.date);
+            console.log(reservation.date);
+            resDate.setHours(0, 0, 0, 0);
+            return resDate.getTime() === selctedDate.getTime();
+        });
+
+        
+        
+        
+        if (hasReservationToday)
+        return { error: "You can't reserve more than once per day" };
+    
+        if (teamRes.length == 2)
+            return { error: "You can't have more than 2 reservations per week" };
+    
         await connectToDB();
         const reservation = await Reservation.create({
             date,
             teamId,
-            place,
+            place: team.place,
             period,
-            status: status ? status : undefined,
+            status: "confirmed",
             createdAt: new Date(),
         });
         return JSON.parse(JSON.stringify(reservation));
     } catch (error) {
         console.error('Failed to create reservation:', error);
-        throw error;
+        return { error: 'Failed to create reservation due to an unexpected error.' };
     }
 }
 
@@ -65,7 +88,7 @@ export async function getReservation(resId: string) {
 }
 
 
-export async function getReservations(teamId?: string, date?: string, place?: string, week?: boolean) {
+export async function getReservations(teamId?: string, date?: Date, place?: string, week?: boolean) {
     const filter: any  = {};
 
     if (date) {
@@ -97,11 +120,11 @@ export async function getReservations(teamId?: string, date?: string, place?: st
     }
 }
 
-export async function getPeriodCountByDate(date: string, place?: string) {
+export async function getPeriodCountByDate(date: Date, place?: string) {
     try {
         await connectToDB();
         const reservations = await getReservations(undefined, date, place);
-        const periodCount = {
+        const periodCount: { [key: string]: number } = {
             "1": 0,
             "2": 0,
             "3": 0,
@@ -120,4 +143,3 @@ export async function getPeriodCountByDate(date: string, place?: string) {
         throw error;
     }
 }
-

@@ -18,6 +18,7 @@ export const authConfig: NextAuthConfig = {
                 const userTeam = await getTeamByChef(user.email);
                 if (userTeam) {
                     session.user.teamId = userTeam._id;
+                    session.user.place = userTeam.place;
                 }
             }
             

@@ -2,10 +2,10 @@ import { Schema, model, models } from 'mongoose';
 
 export interface IReservation {
     teamId: string;
-    status: 'confirmed' | 'abscent' | 'canceled';
-    place: 'uia' | 'technopark';
-    date: string;
-    period: 1 | 2 | 3 | 4;
+    status?: 'confirmed' | 'abscent' | 'canceled';
+    place?: 'uia' | 'technopark';
+    date: Date;
+    period: number;
     createdAt?: Date;
 }
 
@@ -40,10 +40,11 @@ const ReservationSchema = new Schema({
         required: true,
         validate: {
             validator: function (value: Date) {
-                return value >= new Date();
+                const startOfToday = new Date();
+                startOfToday.setHours(0, 0, 0, 0);
+                return value >= startOfToday;
             },
-            message: `Reservation should be in the future!`
-        }
+        },
     },
     period: {
         type: Number,

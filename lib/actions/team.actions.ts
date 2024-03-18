@@ -38,6 +38,19 @@ export async function createTeam({ sg, theme, supervisor, chef, place, members }
   }
 }
 
+export async function getTeam(teamId: string) {
+  try {
+    await connectToDB();
+
+    const team = await Team.findOne({ _id: teamId })
+
+    return JSON.parse(JSON.stringify(team));
+  } catch (error) {
+    console.error('Failed to get team:', error);
+    throw error;
+  }
+}
+
 export async function getTeamByChef(chef: string) {
   try {
     await connectToDB();
@@ -51,11 +64,11 @@ export async function getTeamByChef(chef: string) {
   }
 }
 
-export async function updateTeamByChef(chef: string, teamDetails: ITeam) {
+export async function updateTeam(_id: string, teamDetails: ITeam) {
   try {
     await connectToDB();
 
-    const updateResult = await Team.findOneAndUpdate({ chef }, {
+    const updateResult = await Team.findOneAndUpdate({ _id }, {
       $set: teamDetails
     }).lean();
 
@@ -66,10 +79,10 @@ export async function updateTeamByChef(chef: string, teamDetails: ITeam) {
   }
 }
 
-export async function removeTeam(chef: string) {
+export async function removeTeam(_id: string) {
   try {
     await connectToDB();
-    const result = await Team.deleteOne({ chef });
+    const result = await Team.deleteOne({ _id });
     return result;
   } catch (error) {
     console.error('Failed to remove team:', error);

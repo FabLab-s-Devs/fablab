@@ -1,35 +1,45 @@
 'use client'
 import { getPeriodCountByDate, getReservations } from "@/lib/actions/reservation.actions"
-import { cn, filterReservationsForWeek } from "@/lib/utils";
-import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
-function PickPeriod({ date, selectedPeriod, setSelectedPeriod }: any) {
-    const [periods, setPeriods] = useState({
+interface Periods {
+    [key: string]: number;
+}
+interface PeriodsMap {
+    [key: string]: string;
+}
+function PickPeriod({ date, selectedPeriod, setSelectedPeriod, user }: any) {
+    const max = user?.place === "uia" ? 12 : 8;
+    const [periods, setPeriods] = useState<Periods>({
         "1": 0,
         "2": 0,
         "3": 0,
         "4": 0
     });
-    const periodsMap = {
+
+    const periodsMap:PeriodsMap = {
         "1": "09:00 - 12:00",
         "2": "12:00 - 15:00",
         "3": "15:00 - 18:00",
         "4": "18:00 - 21:00"
-    }
+    };
+
     const handlePeriodClick = (periodKey: string) => {
-        setSelectedPeriod(periodKey === selectedPeriod ? selectedPeriod : periodKey);
+        if (periods[periodKey] < max) {
+            setSelectedPeriod(periodKey === selectedPeriod ? selectedPeriod : periodKey);
+        }
     };
 
     useEffect(() => {
         const getPeriods = async () => {
-            const perDB = await getPeriodCountByDate(date);
-            console.log(perDB);
-            return setPeriods(perDB)
+            const perDB = await getPeriodCountByDate(date, user?.place);
+            setPeriods(perDB);
         }
         getPeriods().catch(console.error);
+    }, [date, user?.place]);
 
-    }, []);
+    
 
     return (
         <div className="flex flex-col gap-2 items-start justify-center w-full">
@@ -37,22 +47,22 @@ function PickPeriod({ date, selectedPeriod, setSelectedPeriod }: any) {
                 Pick The Period
             </h2>
             <div className="w-full space-y-1">
-                {
-                    Object.keys(periods).map((period) => (
-                        <div key={period} onClick={() => handlePeriodClick(period)} className={cn("p-2 flex justify-between items-center w-full rounded-sm", selectedPeriod === period ? "bg-blue-200" :"bg-slate-100")}>
+                {Object.keys(periods).map((period: string) => {
+                    const isFull = periods[period] >= (max);
+                    return (
+                        <div key={period} onClick={() => handlePeriodClick(period)} className={cn("p-2 flex justify-between items-center w-full rounded-sm", selectedPeriod === period ? "bg-blue-200" : isFull ? "bg-red-500 text-white" : "bg-slate-100")}>
                             <div>
-                                {periodsMap[period as keyof typeof periodsMap]}
+                                {periodsMap[period]}
                             </div>
                             <div className="font-light text-[14px]">
-                                {periods[period as keyof typeof periods]}/12
+                                {isFull ? "Full" : `${periods[period]}/${max}`}
                             </div>
                         </div>
-                    ))
-                }
-
+                    );
+                })}
             </div>
         </div>
-    )
+    );
 }
 
 export default PickPeriod
