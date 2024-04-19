@@ -52,6 +52,10 @@ const ReservationSchema = new Schema({
         min: 1,
         max: 4
     },
+    present: {
+        type: Boolean,
+        default: false 
+    },
     createdAt: {
         type: Date,
         default: Date.now,
