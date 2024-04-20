@@ -14,6 +14,6 @@ export interface simplenewsCard {
     description: string;
     currentSlug: string;
     postimage: string;
-    content: string;
+    content: any;
     show: boolean;
 }

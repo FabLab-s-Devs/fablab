@@ -16,7 +16,6 @@
   }
   @media (min-width: 768px) {
     .container-s {
-      max-width: 900px;
       padding-inline: 90px;
     }
   }

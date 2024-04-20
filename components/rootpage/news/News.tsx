@@ -1,16 +1,16 @@
-import { simpleBlogCard } from "@/lib/interface";
 import { client, urlFor } from "@/lib/sanity";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { simplenewsCard } from "@/lib/interface";
 import Image from "next/image"
 import Link from "next/link";
 
 async function getData() {
-  const query = `*[_type == 'project' && show]{
+  const query = `*[_type == 'news' && show]{
       title,
       "slug":slug.current,
       description,
-      projectimage,
+      postimage,
       show
     }`;
 
@@ -21,13 +21,13 @@ async function getData() {
 
 
 
-export default async function Projects() {
-  const data: simpleBlogCard[] = await getData();
+export default async function News() {
+  const data: simplenewsCard[] = await getData();
   return (
     <div className='container-s tablet:container-t laptop:container-pc relative pt-10 pb-5'>
       <div className='flex flex-col text-center  items-center justify-center'>
         <h2 className='text-4xl font-bold mb-4'>
-        Nos projets
+          Nos Actualités
         </h2>
         <div className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-2 gap-3  items-center justify-center">
           {data && data.map((post, idx) => (
@@ -35,11 +35,11 @@ export default async function Projects() {
               {post && (
                 <>
                   <Image
-                    src={urlFor(post.projectimage).url()}
+                    src={urlFor(post.postimage).url()}
                     alt="image"
                     width={500}
                     height={500}
-                    className="rounded-t-lg h-[200px] w-full object-cover"
+                    className="rounded-t-lg h-[200px] object-cover"
                   />
 
                   <CardContent className="mt-5">
@@ -61,5 +61,4 @@ export default async function Projects() {
       </div>
     </div>
   )
-
 }

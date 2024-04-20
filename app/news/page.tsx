@@ -1,9 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { client, urlFor } from "../../lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { simplenewsCard } from "@/app/lib/interface";
+import { simplenewsCard } from "@/lib/interface";
 
 async function getData() {
   const query = `*[_type == 'news']{
