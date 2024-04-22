@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer utilities {
-  /* Define your utility styles here. Tailwind's responsive prefixes can be used directly in class names if needed. */
+  /* Define your utility styles here. Tailwind's responsive prefixes can be used directly in class names if needed. */npm i
   .container-s {
     width: 100%;
     margin-inline: auto;
@@ -111,5 +111,6 @@
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
+    
   }
 }

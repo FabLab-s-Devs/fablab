@@ -10,9 +10,10 @@ module.exports = {
   prefix: "",
   theme: {
     screens: {
-      'tablet': '425px',
-      'laptop': '768px',
-      'pc': "1024px"
+      'sm': '425px',    // Small devices (like smartphones)
+      'md': '768px',    // Medium devices (like tablets)
+      'lg': '1024px',   // Large devices (like laptops/desktops)
+      'xl': '1280px',   // Extra large devices (like large desktops)
     },
     container: {
       center: true,
@@ -30,6 +31,7 @@ module.exports = {
         "default": "0px 5px 50px 0px rgba(0, 0, 0, 0.10)"
       },
       colors: {
+        
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
