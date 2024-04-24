@@ -5,33 +5,30 @@ import vector from "@/public/vector.png";
 function Hero() {
   return (
     <div>
-
+      <div className="bg-heroBg bg-cover bg-center bg-no-repeat container-s pb-10 md:pb-0 bg-white md:h-screen flex justify-center items-center relative">
+        <div className="absolute inset-0 bg-black opacity-50"></div> {/* Add white overlay */}
+        <div className="container mt-16 md:mt-0 mx-auto px-4 lg:grid lg:grid-cols-1 lg:gap-8 justify-center items-center relative z-10">
+          <div className="text-center lg:text-left lg:bg-cover lg:bg-no-repeat lg:bg-center lg:bg-opacity-50 lg:w-full lg:h-full lg:flex lg:flex-col lg:justify-center lg:p-8 lg:py-16">
+            <div className="text-center">
+              <h1 className="text-3xl max-w-5xl text-center mx-auto md:text-7xl  font-bold mb-4 text-white text-transparent bg-clip-text">
+                Unleash Your <span className="text-amber-500">Creativity</span> in Fablab Universiapolis
+              </h1>
+              <div>
+                <Link href="/" className="mr-3 px-3 py-1 bg-amber-500 text-white hover:bg-amber-600 rounded-sm">
+                  Register Now
+                </Link>
+                {/* <Link href="/" className="px-3 py-1 border border-orange-500 text-amber-500 hover:bg-amber-600 rounded-sm">
+                  PDF
+                </Link> */}
+              </div>
+            </div>
+          </div>
+          <div className="hidden absolute inset-0 justify-center items-center">
+            <Image src={vector} alt="Vector" width={600} />
+          </div>
+        </div>
+      </div>
     </div>
-  //   <div>
-  //   <div className="bg-heroBg bg-cover bg-center bg-no-repeat container-s pb-10 md:pb-0 bg-white md:h-screen flex justify-center items-center relative">
-  //     <div className="absolute inset-0 bg-black opacity-50"></div> {/* Add white overlay */}
-  //     <div className="container mt-16 md:mt-0 mx-auto px-4 lg:grid lg:grid-cols-1 lg:gap-8 justify-center items-center relative z-10">
-  //       <div className="text-center lg:text-left lg:bg-cover lg:bg-no-repeat lg:bg-center lg:bg-opacity-50 lg:w-full lg:h-full lg:flex lg:flex-col lg:justify-center lg:p-8 lg:py-16">
-  //         <div className="text-center">
-  //           <h1 className="text-3xl max-w-5xl text-center mx-auto md:text-7xl  font-bold mb-4 text-white text-transparent bg-clip-text">
-  //             Unleash Your <span className="text-amber-500">Creativity</span> in Fablab Universiapolis
-  //           </h1>
-  //           <div>
-  //             <Link href="/" className="mr-3 px-3 py-1 bg-amber-500 text-white hover:bg-amber-600 rounded-sm">
-  //               Register Now
-  //             </Link>
-  //             {/* <Link href="/" className="px-3 py-1 border border-orange-500 text-amber-500 hover:bg-amber-600 rounded-sm">
-  //               PDF
-  //             </Link> */}
-  //           </div>
-  //         </div>
-  //       </div>
-  //       <div className="hidden absolute inset-0 justify-center items-center">
-  //         <Image src={vector} alt="Vector" width={600} />
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div>
   );
 }
 
