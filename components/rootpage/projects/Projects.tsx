@@ -26,7 +26,7 @@ export default async function Projects() {
   const data: simpleBlogCard[] = await getData();
   return (
     <div className='max-w-7xl mx-auto py-5'>
-      {/* <div className='flex flex-col text-center  items-center justify-center'>
+      <div className='flex flex-col text-center  items-center justify-center'>
         <h2 className='text-amber-500 mt-6 font-bold text-4xl md:text-6xl mb-2'>
           Our projets
         </h2>
@@ -60,7 +60,7 @@ export default async function Projects() {
         </div>
         <button className="text-blue-700 text-xl p-4 font-sans">
           <Link href={`/projects/`}>See More...</Link></button>
-      </div> */}
+      </div>
     </div>
   )
 
