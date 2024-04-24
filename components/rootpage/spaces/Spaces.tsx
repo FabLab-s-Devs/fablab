@@ -6,7 +6,7 @@ import Link from "next/link"
 function Spaces() {
   return (
    <div className="bg-amber-50 py-9">
-     {/* <div className='md:max-w-7xl md:mx-auto grid-cols-2 gap-4 items-center'>
+     <div className='md:max-w-7xl md:mx-auto grid-cols-2 gap-4 items-center'>
       <div className="w-full md:w-1/2">
         <Image
           className="absolute right-3 -z-10"
@@ -32,7 +32,7 @@ function Spaces() {
           <Image src={blob} alt="Fablab pic " width={600} />
         </div>
       </div>
-    </div> */}
+    </div>
    </div>
   )
 }
