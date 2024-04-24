@@ -14,8 +14,8 @@ function Hero() {
                 Unleash Your <span className="text-amber-500">Creativity</span> in Fablab Universiapolis
               </h1>
               <div>
-                <Link href="/" className="mr-3 px-3 py-1 bg-amber-500 text-white hover:bg-amber-600 rounded-sm">
-                  Register Now
+                <Link href="/" className="mr-3 px-3 py-2 bg-amber-500 text-white hover:bg-amber-600 rounded-sm">
+                  Reserve Now
                 </Link>
                 {/* <Link href="/" className="px-3 py-1 border border-orange-500 text-amber-500 hover:bg-amber-600 rounded-sm">
                   PDF

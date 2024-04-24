@@ -16,7 +16,6 @@ async function getData() {
 
   const data = (await client.fetch(query))?.filter((d: any) => d.show);
 
-  console.log(data)
   return data;
 }
 
@@ -33,7 +32,8 @@ export default async function Projects() {
           <p className="text-blue-500">Embark on a Journey of Discovery with Our Projects</p>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mx-7 md:mx-3  items-center justify-center">
           {data && data.map((post) => (
-            <Card key={post.currentSlug}>
+			<div key={post.slug}>
+            <Card>
               {post && (
                 <>
                   <Image
@@ -56,6 +56,7 @@ export default async function Projects() {
                 </>
               )}
             </Card>
+			</div>
           ))}
         </div>
         <button className="text-blue-700 text-xl p-4 font-sans">

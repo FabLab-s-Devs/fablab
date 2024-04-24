@@ -22,9 +22,6 @@ function Spaces() {
     Cultivate Innovation and Shape the  <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-900 text-transparent bg-clip-text">Future</span> 
   </h2>
   <p className="hidden md:flex text-justify mx-4 mb-5 md:text-justify"> Reflects our commitment to nurturing new ideas and crafting innovative solutions. Together, we strive to achieve our aspirations and bring about positive change. Join us in shaping a better tomorrow</p>
-  <Link href="/" className="px-3 mx-4 py-1 bg-amber-500 text-white hover:bg-amber-600 rounded-sm">
-    Register Now
-  </Link>
 </div>
 
         <div className="w-full md:w-auto md:flex justify-center items-center relative">

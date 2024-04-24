@@ -12,7 +12,6 @@ export default function Home() {
       <Pillars/>
       <Spaces/>
       <Projects/>
-      {/* <News/> */}
       <Faq/>
     </>
   )

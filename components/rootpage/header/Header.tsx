@@ -16,10 +16,8 @@ function Header() {
       <div className="">
       <Link href="/" className="text-black">
         <Image
-            className="h-auto"
-            width={0}
-            height={0}
-            style={{width:'50px', height: "auto" }}
+            width={40}
+            height={40}
             alt="Fablab UIA Logo"
             src="/logo.svg"
           />        
