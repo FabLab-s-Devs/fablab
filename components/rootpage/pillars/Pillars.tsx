@@ -1,78 +1,51 @@
-import Image from "next/image"
-import { IoSchoolOutline } from "react-icons/io5";
-import { GrGroup } from "react-icons/gr";
-import { HiOutlineWrench } from "react-icons/hi2";
-import { PiLightbulb } from "react-icons/pi";
-import { ReactNode } from "react";
-
-const PillarsData: {title:string, icon:ReactNode, description:string}[] = [
-    {
-        icon: <IoSchoolOutline size={25} color="#fff"/>,
-        title: "Education",
-        description: "Empowering individuals with hands-on learning experiences and skill development in science, technology, engineering."
-    },
-    {
-        icon: <PiLightbulb size={25} color="#fff"/>,
-        title: "Innovation",
-        description: "Fostering creativity and cutting-edge ideas through collaborative projects and access to advanced technologies."
-    },
-    {
-        icon: <GrGroup size={25} color="#fff"/>,
-        title: "Community",
-        description: "Building a supportive and inclusive environment that encourages knowledge sharing, networking, and the exchange of ideas."
-    },
-    {
-        icon: <HiOutlineWrench size={25} color="#fff"/>,
-        title: "Fabrication",
-        description: "Offering state-of-the-art machines and equipment to enable precision fabrication, empowering users to bring their designs to life"
-    }
-]
-
-function Pillar({title, icon, description}: {title:string, icon:ReactNode, description:string}) {
-    return (
-        <div className="px-2 py-3 flex flex-col gap-3 justify-center items-start max-w-[150px]">
-            <div className="flex gap-2 items-center justify-start">
-                <div className="p-1 bg-secondary rounded-lg">
-                    {icon}
-                </div>
-                <h3 className="text-[16px] font-bold">
-                    {title}
-                </h3>
-            </div>
-            <p className="text-[11px] text-start">
-                {description}
-            </p>
-        </div>
-    )
-}
+import Image from "next/image";
+import img1 from '@/public/assets/ai.png';
+import img2 from '@/public/assets/think.png';
+import img3 from '@/public/assets/tech.png';
 
 function Pillars() {
-
-
-  return (
-    <div className='container-s tablet:container-t laptop:container-pc relative py-5'>
-        <Image
-        className="absolute -left-3"
-        src="/assets/zwak.svg"
-        width={70}
-        height={92}
-        alt="Random decoration"
-        />
-        <div className="flex flex-col text-center text-foreground gap-5">
-            <h2 className='text-4xl font-bold'>
-                Nos Pilliers
-            </h2>
-            <div className="flex gap-5 flex-wrap items-start justify-center">
-                {
-                    PillarsData.map(function (data, i) {
-                        return (<Pillar key={`Pillar-${i}`} title={data.title} icon={data.icon} description={data.description}/>)
-                    })
-                }
+    return (
+      <div className=" py-8 md:py-15 mb-5">
+        {/* <div className="md:max-w-7xl mx-5 md:mx-auto">
+          <div className="text-center mb-10">
+            <h1 className="text-amber-500 mt-6 font-bold text-3xl md:text-6xl">Bring your visions to life.</h1>
+            <span className="text-blue-500">Transform your ideas into reality</span>
+          </div>
+          <div className="md:flex md:flex-row md:items-center gap-10 ">
+            <div className="bg-gray-100  hover:bg-gray-50  w-full md:w-1/3 px-4 py-7 text-black">
+              <div className="justify-center m-2 items-center flex">
+                <Image  src={img1} alt="" width={70} />
+              </div>
+              <div className="text-center md:text-center">
+                <h1 className="text-blue-700 font-bold m-2 text-2xl md:text-3xl">Innovation</h1>
+                <p className="px-3 text-sm md:text-lg">Fostering creativity and cutting-edge ideas through collaborative projects, access to tech, and innovative thinking.</p>
+              </div>
             </div>
-
-        </div>
-    </div>
-  )
-}
-
-export default Pillars
+            <div className="bg-gray-100  hover:bg-gray-50 w-full md:w-1/3 px-4 py-7 text-black">
+              <div className="justify-center m-2 items-center flex">
+                <Image  src={img2} alt="" width={70} />
+              </div>
+              <div className="text-center md:text-center ">
+                <h1 className="text-blue-700 font-bold m-2 text-2xl md:text-3xl">Ideation</h1>
+                <p className="text-sm md:text-lg px-3">Empowering individuals with hands-on learning experiences and skill development in science, technology, engineering.</p>
+              </div>
+            </div>
+            <div className="bg-gray-100  hover:bg-gray-50 w-full md:w-1/3 px-4 py-7 text-black">
+              <div className="justify-center m-2 items-center flex">
+                <Image  src={img3} alt="" width={70} />
+              </div>
+              <div className="text-center md:text-center">
+                <h1 className="text-blue-700 font-bold m-2 text-2xl md:text-3xl">Fabrication</h1>
+                <p className="px-3 text-sm md:text-lg">Offering state-of-the-art machines to enable precision fabrication, empowering users to bring their designs to life</p>
+              </div>
+            </div>
+            
+          </div>
+        </div> */}
+      </div>
+    );
+  }
+  
+  export default Pillars;
+  
+  

@@ -18,12 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} max-w-7xl mx-auto `}>
+      <body className={`${poppins.className} `}>
         <Header/>
         <main>
           {children}
         </main>
-        {/* <Footer/> */}
+        <Footer/>
       </body>
     </html>
   )

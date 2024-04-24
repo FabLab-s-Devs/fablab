@@ -1,70 +1,39 @@
 import Image from "next/image"
-
-const SpacesData: {title:string, source:string, description:string}[] = [
-    {
-        source: "/assets/spaces/expo.png",
-        title: "Espace d’Exposition",
-        description: "Building a supportive and inclusive environment that encourages knowledge sharing, networking, and the exchange of ideas."
-    },
-    {
-        source: "/assets/spaces/idea.png",
-        title: "Espace d’Ideation",
-        description: "Building a supportive and inclusive environment that encourages knowledge sharing, networking, and the exchange of ideas."
-    },
-    {
-        source: "/assets/spaces/proto.png",
-        title: "Espace de Prototypage",
-        description: "Building a supportive and inclusive environment that encourages knowledge sharing, networking, and the exchange of ideas."
-    }
-]
-
-function Space({title, source, description}: {title:string, source:string, description:string}) {
-    return (
-        <div className="p-3 flex gap-2 justify-start items-center w-full shadow-default rounded-sm">
-            <Image
-            width={60}
-            height={85}
-            src={source}
-            alt="Ilustration"
-            className=" bg-cover bg-center"
-            />
-
-            <div className="flex flex-col gap-1 items-start justify-start text-start">
-                <h3 className="text-[20px] font-bold">
-                     {title}
-                </h3>
-                <p className="text-[10px]">
-                    {description}
-                </p>
-            </div>
-        </div>
-    )
-}
+import chabab from '@/public/assets/fablabpic.png'
+import blob from '@/public/assets/bbb.svg'
+import Link from "next/link"
 
 function Spaces() {
   return (
-    <div className='container-s tablet:container-t laptop:container-pc relative pt-10 pb-5'>
+   <div className="bg-amber-50 py-9">
+     {/* <div className='md:max-w-7xl md:mx-auto grid-cols-2 gap-4 items-center'>
+      <div className="w-full md:w-1/2">
         <Image
-        className="absolute right-3 -z-10"
-        src="/assets/zwak.svg"
-        width={70}
-        height={92}
-        alt="Random decoration"
+          className="absolute right-3 -z-10"
+          src="/assets/zwak.svg"
+          width={70}
+          height={92}
+          alt="Random decoration"
         />
-        <div className="flex flex-col text-center text-foreground gap-5">
-            <h2 className='text-4xl font-bold'>
-                Nos Espaces
-            </h2>
-            <div className="flex flex-col gap-3 items-center justify-center">
-                {
-                    SpacesData.map(function (data, i) {
-                        return (<Space key={`space-${i}`} title={data.title} source={data.source} description={data.description}/>)
-                    })
-                }
-            </div>
+      </div>
+      <div className="md:flex text-center md:text-start text-foreground gap-5 items-center justify-between">
+      <div className="w-full md:w-1/2">
+  <h2 className='text-amber-500 text-center mx-4 md:text-start mt-6 font-bold text-2xl md:text-5xl lg:text-6xl mb-2'>
+    Cultivate Innovation and Shape the  <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-900 text-transparent bg-clip-text">Future</span> 
+  </h2>
+  <p className="hidden md:flex text-justify mx-4 mb-5 md:text-justify"> Reflects our commitment to nurturing new ideas and crafting innovative solutions. Together, we strive to achieve our aspirations and bring about positive change. Join us in shaping a better tomorrow</p>
+  <Link href="/" className="px-3 mx-4 py-1 bg-amber-500 text-white hover:bg-amber-600 rounded-sm">
+    Register Now
+  </Link>
+</div>
 
+        <div className="w-full md:w-auto md:flex justify-center items-center relative">
+          <Image src={chabab} className="absolute inset-2 webkit webkitimg" alt="Fablab pic" width={600} />
+          <Image src={blob} alt="Fablab pic " width={600} />
         </div>
-    </div>
+      </div>
+    </div> */}
+   </div>
   )
 }
 

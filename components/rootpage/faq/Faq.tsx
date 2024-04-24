@@ -35,7 +35,7 @@ function FaqItem({question, answer, myValue}: {question:string, answer:string, m
 
 function Faq() {
   return (
-    <div className='container-s tablet:container-t laptop:container-pc relative py-10'>
+    <div className='relative py-10'>
         <Image
         className="absolute -left-3 -z-10"
         src="/assets/zwak.svg"
@@ -43,8 +43,10 @@ function Faq() {
         height={92}
         alt="Random decoration"
         />
+        <div className="mx-6 md:w-1/2 md:mx-auto ">
+
         <div className="flex flex-col text-center text-foreground gap-5">
-            <h2 className='text-4xl font-bold'>
+            <h2 className='text-amber-500 mt-6 font-bold text-4xl md:text-6xl mb-2'>
                 Frequently asked questions
             </h2>
             <Accordion type="single" collapsible>
@@ -55,6 +57,7 @@ function Faq() {
                 }
             </Accordion>
 
+        </div>
         </div>
     </div>
   )

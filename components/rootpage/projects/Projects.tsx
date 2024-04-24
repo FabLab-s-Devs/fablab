@@ -6,16 +6,17 @@ import Image from "next/image"
 import Link from "next/link";
 
 async function getData() {
-  const query = `*[_type == 'project' && show]{
+  const query = `*[_type == 'project']{
       title,
-      "slug":slug.current,
+      "slug": slug.current,
       description,
       projectimage,
       show
     }`;
 
-  const data = await client.fetch(query);
+  const data = (await client.fetch(query))?.filter((d: any) => d.show);
 
+  console.log(data)
   return data;
 }
 
@@ -24,14 +25,15 @@ async function getData() {
 export default async function Projects() {
   const data: simpleBlogCard[] = await getData();
   return (
-    <div className='container-s tablet:container-t laptop:container-pc relative pt-10 pb-5'>
-      <div className='flex flex-col text-center  items-center justify-center'>
-        <h2 className='text-4xl font-bold mb-4'>
-        Nos projets
+    <div className='max-w-7xl mx-auto py-5'>
+      {/* <div className='flex flex-col text-center  items-center justify-center'>
+        <h2 className='text-amber-500 mt-6 font-bold text-4xl md:text-6xl mb-2'>
+          Our projets
         </h2>
-        <div className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-2 gap-3  items-center justify-center">
-          {data && data.map((post, idx) => (
-            <Card key={idx}>
+          <p className="text-blue-500">Embark on a Journey of Discovery with Our Projects</p>
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mx-7 md:mx-3  items-center justify-center">
+          {data && data.map((post) => (
+            <Card key={post.currentSlug}>
               {post && (
                 <>
                   <Image
@@ -47,8 +49,8 @@ export default async function Projects() {
                     <p className="line-clamp-3 text-sm mt-2 text-gray-600 dark:text-gray-300">
                       {post.description}
                     </p>
-                    <Button asChild className="w-full mt-5">
-                      <Link href={`/news/${post.slug}`}>Read more</Link>
+                    <Button asChild className="w-full mt-5 hover:bg-amber-400">
+                      <Link href={`/projects/${post.slug}`}>Read more</Link>
                     </Button>
                   </CardContent>
                 </>
@@ -56,9 +58,9 @@ export default async function Projects() {
             </Card>
           ))}
         </div>
-        <button className="underline text-3xl p-4 font-sans">
-          <Link href={`/news/`}>See More...</Link></button>
-      </div>
+        <button className="text-blue-700 text-xl p-4 font-sans">
+          <Link href={`/projects/`}>See More...</Link></button>
+      </div> */}
     </div>
   )
 

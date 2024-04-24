@@ -9,6 +9,13 @@
     margin-inline: auto;
     padding-inline: 40px;
   }
+.maxwidth{
+  max-width: 190vh;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+  
   @media (min-width: 640px) {
     .container-s {
       padding-inline: 50px;
@@ -19,23 +26,37 @@
       padding-inline: 90px;
     }
   }
+
+  .webkitimg{
+    mask-repeat: no-repeat;
+  }
+
+  .webkit{
+    mask-image: none;
+
+    -webkit-mask-image: url(data:image/svg+xml;base64,77u/PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyMDAwIDIwMDAnIGZpbGw9JyM4MDgnPjxwYXRoIGQ9J005OTQgMTEyYy03MDMtMi05MjAuNDcgNDAwLjM1LTkwNCA5MDUgMTMuMzUgNDA5IDMyLjAzIDk0Ni42NiA5NzcgODYxIDY4NC02MiA3OTItMjc5IDgzNS03NzcgNjEuNjctNzE0LjI1LTI4OC4zMy05ODcuMjQtOTA4LTk4OVonPjwvcGF0aD48L3N2Zz4=);
+  }
+
   .heroBg {
     position: relative;
-  }
-  .heroBg::before {
-    content: "";
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("/assets/hero-image.jpg");
+
     background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: brightness(0.5);
-    z-index: -1;
+    filter: brightness(0.5) /* Adjust the brightness to your preference */;
+  background-color: rgba(255, 255, 255, 0.5); /* Add a white overlay with opacity */
+  z-index: -10;
+
+  
   }
+  
+
+
+  
+  
+
 }
 
 @layer base {

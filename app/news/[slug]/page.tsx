@@ -2,6 +2,7 @@ import { client } from "@/lib/sanity";
 import { simplenewsCard } from "@/lib/interface";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
+
 async function getData(params: string) {
   const query = `
   *[_type == 'news' && slug.current == '${params}']{
@@ -14,6 +15,7 @@ async function getData(params: string) {
   const data = await client.fetch(query);
   return data;
 
+  
 }
 export default async function page({ params }: { params: { slug: string } }) {
   const width = 500;
