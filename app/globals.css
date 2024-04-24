@@ -3,135 +3,142 @@
 @tailwind utilities;
 
 @layer utilities {
-  /* Define your utility styles here. Tailwind's responsive prefixes can be used directly in class names if needed. */npm i
-  .container-s {
-    width: 100%;
-    margin-inline: auto;
-    padding-inline: 40px;
-  }
-.maxwidth{
-  max-width: 190vh;
-  margin-left: auto;
-  margin-right: auto;
-
-}
-  
-  @media (min-width: 640px) {
-    .container-s {
-      padding-inline: 50px;
+    /* Define your utility styles here. Tailwind's responsive prefixes can be used directly in class names if needed. */
+    npm i .container-s {
+        width: 100%;
+        margin-inline: auto;
+        padding-inline: 40px;
     }
-  }
-  @media (min-width: 768px) {
-    .container-s {
-      padding-inline: 90px;
+    .maxwidth {
+        max-width: 190vh;
+        margin-left: auto;
+        margin-right: auto;
     }
-  }
 
-  .webkitimg{
-    mask-repeat: no-repeat;
-  }
+    @media (min-width: 640px) {
+        .container-s {
+            padding-inline: 50px;
+        }
+    }
+    @media (min-width: 768px) {
+        .container-s {
+            padding-inline: 90px;
+        }
+    }
 
-  .webkit{
-    mask-image: none;
+    .webkitimg {
+        mask-repeat: no-repeat;
+    }
 
-    -webkit-mask-image: url(data:image/svg+xml;base64,77u/PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyMDAwIDIwMDAnIGZpbGw9JyM4MDgnPjxwYXRoIGQ9J005OTQgMTEyYy03MDMtMi05MjAuNDcgNDAwLjM1LTkwNCA5MDUgMTMuMzUgNDA5IDMyLjAzIDk0Ni42NiA5NzcgODYxIDY4NC02MiA3OTItMjc5IDgzNS03NzcgNjEuNjctNzE0LjI1LTI4OC4zMy05ODcuMjQtOTA4LTk4OVonPjwvcGF0aD48L3N2Zz4=);
-  }
+    .webkit {
+        mask-image: none;
 
-  .heroBg {
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+        -webkit-mask-image: url(data:image/svg+xml;base64,77u/PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyMDAwIDIwMDAnIGZpbGw9JyM4MDgnPjxwYXRoIGQ9J005OTQgMTEyYy03MDMtMi05MjAuNDcgNDAwLjM1LTkwNCA5MDUgMTMuMzUgNDA5IDMyLjAzIDk0Ni42NiA5NzcgODYxIDY4NC02MiA3OTItMjc5IDgzNS03NzcgNjEuNjctNzE0LjI1LTI4OC4zMy05ODcuMjQtOTA4LTk4OVonPjwvcGF0aD48L3N2Zz4=);
+    }
 
-    background-position: center;
-    filter: brightness(0.5) /* Adjust the brightness to your preference */;
-  background-color: rgba(255, 255, 255, 0.5); /* Add a white overlay with opacity */
-  z-index: -10;
+    .heroBg {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
 
-  
-  }
-  
-
-
-  
-  
-
+        background-position: center;
+        filter: brightness(0.5) /* Adjust the brightness to your preference */;
+        background-color: rgba(
+            255,
+            255,
+            255,
+            0.5
+        ); /* Add a white overlay with opacity */
+        z-index: -10;
+    }
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 99%;
-    --foreground: 234, 20%, 32%;
+    :root {
+        --background: 0 0% 99%;
+        --foreground: 234, 20%, 32%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
- 
-    --primary: 40, 90%, 52%;
-    --primary-foreground: 0 0% 99%;
- 
-    --secondary: 234, 80%, 32%;
-    --secondary-foreground: 0 0% 99%;
- 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
- 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
- 
-    --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
- 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
- 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
- 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
- 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
- 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --primary: 40, 90%, 52%;
+        --primary-foreground: 0 0% 99%;
+
+        --secondary: 234, 80%, 32%;
+        --secondary-foreground: 0 0% 99%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+    }
 }
- 
+
 @layer base {
-  *, ::after, ::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    @apply bg-background text-foreground;
-    overflow-x: hidden;
-    
+    *,
+    ::after,
+    ::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        @apply bg-background text-foreground;
+        overflow-x: hidden;
+    }
+}
+
+.hiddenForMd {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .hiddenForMd {
+    display: none;
   }
 }

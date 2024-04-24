@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/rootpage/header/Header'
 import Footer from '@/components/rootpage/footer/Footer'
+import { ClerkProvider } from "@clerk/nextjs";
 
 const poppins = Poppins({ subsets: ['latin'], weight: ["400", "600", "700", "500", "200", "300"] })
 
@@ -17,14 +18,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${poppins.className} `}>
-        <Header/>
-        <main>
-          {children}
-        </main>
-        <Footer/>
-      </body>
-    </html>
-  )
+      <html lang="en">
+          <ClerkProvider>
+              <body className={`${poppins.className} min-h-screen w-full`}>
+                  <Header />
+                  <main>{children}</main>
+                  <Footer />
+              </body>
+          </ClerkProvider>
+      </html>
+  );
 }

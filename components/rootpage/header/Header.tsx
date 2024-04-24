@@ -1,111 +1,42 @@
-"use client"
-import Image from "next/image"
-import Link from "next/link"
-import { useState } from "react"
+import { LogoLink } from "./LogoLink";
+import { MobileNavMenu } from "./MobileNavMenu";
+import { DesktopNavMenu } from "./DesktopNavMenu";
+import { UserButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
+import Link from "next/link";
 
-function Header() {
+export const Header = async () => {
+	const user = await currentUser();
+    return (
+        <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b bg-background px-4 md:px-6">
+            <LogoLink
+                src="/logo.svg"
+                alt="Fablab Logo"
+                width={40}
+                height={40}
+                mobile={false}
+            />
+            <DesktopNavMenu />
+            <MobileNavMenu />
+            {user ? (
+                <UserButton
+                    appearance={{
+                        elements: {
+                            avatarBox: "w-9 h-9",
+                            userButtonPopoverFooter: "hidden",
+                        },
+                    }}
+                />
+            ) : (
+                <Link
+                    href="/sign-in"
+                    className="mr-3 px-3 py-1 bg-amber-500 text-white hover:bg-amber-600 rounded-sm"
+                >
+                    Sign In
+                </Link>
+            )}
+        </header>
+    );
+};
 
-  const [Click,setClick] = useState(false);
-  const toggleNavbar = () => {
-    setClick(!Click)
-  }
-
-  return (
-    <div>
-    <div className=" flex items-center justify-between max-w-7xl mx-auto py-4 px-3 md:px-5">
-      <div className="">
-      <Link href="/" className="text-black">
-        <Image
-            width={40}
-            height={40}
-            alt="Fablab UIA Logo"
-            src="/logo.svg"
-          />        
-      </Link>
-        
-      </div>
-      <div className="hidden  md:flex gap-5 ">
-        <Link href="/" className="hover:text-amber-500 text-black">
-          Home
-        </Link>
-        <Link href="/" className="text-black hover:text-amber-500">
-          About Us
-        </Link>
-        <Link href="/projects" className="text-black hover:text-amber-500">
-          Projects
-        </Link>
-        <Link href="/" className="text-black hover:text-amber-500">
-          News
-        </Link>
-        <Link href="/" className="text-black hover:text-amber-500">
-          Contact Us
-        </Link>
-      </div>
-
-      
-      <div>
-      <Link href="/" className="hidden md:block text-primary-foreground font-medium px-2 py-1 bg-primary text-[15 px] rounded-sm">
-          Sign In
-        </Link>
-      </div>
-      <div className="md:hidden flex items-center">
-        <button className="inline-flex items-center justify-center p-2
-        rounded-md text-black hover:text-black focus:outline-none
-        focus:ring-2 focus:ring-inset focus:ring-black" onClick={toggleNavbar}>
-          {Click? (
-            <svg  className="h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor" >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          ):(
-            <svg  className="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16m-7 6h7"/>
-</svg>
-          )}
-        </button>
-          
-      </div>
-    </div>
-    {
-            Click && (
-              <div className="md:hidden">
-                <div className="px-2 pt-2 pb-3 space-y-1 text-black bg-white text-center">
-                <Link href="/" className=" hover:text-amber-500 block">
-                  Home
-                </Link>
-                <Link href="/" className=" hover:text-amber-500 block">
-                  About Us
-                </Link>
-                <Link href="/projects" className=" hover:text-amber-500 block">
-                  Projects
-                </Link>
-                <Link href="/" className=" hover:text-amber-500 block">
-                  News
-                </Link>
-                <Link href="/" className=" hover:text-amber-500 block">
-                  Contact Us
-                </Link>
-                </div>
-              </div>  
-            )
-          }
-    </div>
-  )
-}
-
-export default Header
+export default Header;
