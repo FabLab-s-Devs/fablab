@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-export const LogoLink = ({ src, alt, width, height, mobile }) => (
+export const LogoLink = ({ src, alt, width, height, mobile }: any) => (
     <Link
         href="#"
         className={cn(

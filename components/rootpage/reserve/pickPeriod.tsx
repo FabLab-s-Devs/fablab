@@ -9,8 +9,8 @@ interface Periods {
 interface PeriodsMap {
     [key: string]: string;
 }
-function PickPeriod({ date, selectedPeriod, setSelectedPeriod, user }: any) {
-    const max = user?.place === "uia" ? 12 : 8;
+function PickPeriod({ date, selectedPeriod, setSelectedPeriod }: any) {
+    const max = 12;
     const [periods, setPeriods] = useState<Periods>({
         "1": 0,
         "2": 0,
@@ -33,11 +33,11 @@ function PickPeriod({ date, selectedPeriod, setSelectedPeriod, user }: any) {
 
     useEffect(() => {
         const getPeriods = async () => {
-            const perDB = await getPeriodCountByDate(date, user?.place);
+            const perDB = await getPeriodCountByDate(date);
             setPeriods(perDB);
         }
         getPeriods().catch(console.error);
-    }, [date, user?.place]);
+    }, [date]);
 
     
 

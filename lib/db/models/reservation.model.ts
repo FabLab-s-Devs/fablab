@@ -3,7 +3,6 @@ import { Schema, model, models } from 'mongoose';
 export interface IReservation {
     teamId: string;
     status?: 'confirmed' | 'abscent' | 'canceled';
-    place?: 'uia' | 'technopark';
     date: Date;
     period: number;
     createdAt?: Date;
@@ -25,15 +24,6 @@ const ReservationSchema = new Schema({
             message: `Reservation status should be either confirmed, abscent or canceled`
         },
         default: 'confirmed'
-    },
-    place: {
-        type: String,
-        validate: {
-            validator: function (value: string) {
-                return ["uia", "technopark"].includes(value);
-            },
-            message: `Reservation place should be either uia or technopark`
-        }
     },
     date: {
         type: Date,

@@ -5,7 +5,7 @@ import img3 from '@/public/assets/tech.png';
 
 function Pillars() {
     return (
-      <div className=" py-8 md:py-15 mb-5">
+      <div className="py-8 md:py-15 mb-5" id="about">
         <div className="md:max-w-7xl mx-5 md:mx-auto">
           <div className="text-center mb-10">
             <h1 className="text-amber-500 mt-6 font-bold text-3xl md:text-6xl">Bring your visions to life.</h1>

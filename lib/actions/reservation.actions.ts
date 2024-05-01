@@ -11,26 +11,21 @@ export async function createReservation({ teamId, date, period }: IReservation) 
         if (!team)
             return { error: "You should have a team" };
 
-        const teamRes = await getReservations(teamId, date, team.place, true);
+        const teamRes = await getReservations(teamId, date, undefined, true);
 
-        
         // Check if a reservation exists for today
         const selctedDate = new Date(date);
         selctedDate.setHours(0, 0, 0, 0);
         const hasReservationToday = teamRes.some((reservation: { date: string | number | Date; }) => {
-            
             const resDate = new Date(reservation.date);
             console.log(reservation.date);
             resDate.setHours(0, 0, 0, 0);
             return resDate.getTime() === selctedDate.getTime();
         });
 
-        
-        
-        
         if (hasReservationToday)
-        return { error: "You can't reserve more than once per day" };
-    
+        	return { error: "You can't reserve more than once per day" };
+
         if (teamRes.length == 2)
             return { error: "You can't have more than 2 reservations per week" };
     
@@ -38,7 +33,6 @@ export async function createReservation({ teamId, date, period }: IReservation) 
         const reservation = await Reservation.create({
             date,
             teamId,
-            place: team.place,
             period,
             status: "confirmed",
             createdAt: new Date(),
@@ -65,10 +59,10 @@ export async function updateReservation(resId: string, reservationDetails: IRese
     }
 }
 
-export async function removeReservation(email: string) {
+export async function removeReservation(teamId: string) {
     try {
         await connectToDB();
-        const result = await Reservation.deleteOne({ email: email });
+        const result = await Reservation.deleteOne({ teamId });
         return result;
     } catch (error) {
         console.error('Failed to remove reservation:', error);
@@ -123,7 +117,8 @@ export async function getReservations(teamId?: string, date?: Date, place?: stri
 export async function getPeriodCountByDate(date: Date, place?: string) {
     try {
         await connectToDB();
-        const reservations = await getReservations(undefined, date, place);
+
+        const reservations = await getReservations(undefined, date ? date : new Date(), place);
         const periodCount: { [key: string]: number } = {
             "1": 0,
             "2": 0,

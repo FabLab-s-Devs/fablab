@@ -25,10 +25,10 @@ export const MobileNavMenu = () => (
                     height={45}
                     mobile={true}
                 />
-                <NavLink>Home</NavLink>
-                <NavLink>Projects</NavLink>
-                <NavLink>About Us</NavLink>
-                <NavLink>News</NavLink>
+                <NavLink href="/">Home</NavLink>
+                <NavLink href="#about">About Us</NavLink>
+                <NavLink href="/projects">Projects</NavLink>
+                <NavLink href="/news">News</NavLink>
             </nav>
         </SheetContent>
     </Sheet>
