@@ -24,10 +24,14 @@ export async function createReservation({ teamId, date, period }: IReservation) 
         });
 
         if (hasReservationToday)
-        	return { error: "You can't reserve more than once per day" };
+        	return {
+                error: "Vous ne pouvez pas réserver plus d'une fois par jour",
+            };
 
         if (teamRes.length == 2)
-            return { error: "You can't have more than 2 reservations per week" };
+            return {
+                error: "Vous ne pouvez pas avoir plus de 2 réservations par semaine",
+            };
     
         await connectToDB();
         const reservation = await Reservation.create({
