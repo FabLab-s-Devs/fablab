@@ -1,5 +1,4 @@
 "use server";
-import ReservationConfirmationEmail from "@/components/resend/confirmationTemplate";
 import { format } from "date-fns";
 import { Resend } from "resend";
 
