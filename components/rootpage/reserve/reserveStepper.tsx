@@ -1,15 +1,9 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { DialogTrigger, Dialog, DialogContent } from "@/components/ui/dialog";
 import { StepItem, Stepper, Step, useStepper } from "@/components/ui/stepper";
 import PickDate from "@/components/rootpage/reserve/pickDate";
 import PickPeriod from "@/components/rootpage/reserve/pickPeriod";
-import { DialogClose } from "@radix-ui/react-dialog";
 
-const steps = [
-    { label: "Date" },
-    { label: "Period" },
-] satisfies StepItem[];
+const steps = [{ label: "Date" }, { label: "Période" }] satisfies StepItem[];
 
 function ReserveStepper({
     date,

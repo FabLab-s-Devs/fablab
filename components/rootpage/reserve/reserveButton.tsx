@@ -142,7 +142,7 @@ const Footer = ({ date, period, user }: any) => {
                             className="hover:bg-primary"
                         >
                             {isLastStep
-                                ? "Terminer"
+                                ? "Confirmer"
                                 : isOptionalStep
                                 ? "Passer"
                                 : "Suivant"}
