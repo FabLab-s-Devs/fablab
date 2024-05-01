@@ -3,7 +3,7 @@ const ReservationSuccess = () => {
         <>
             <div className="flex gap-3 items-center justify-start w-full">
                 <h2 className="text-[14px] text-start font-medium text-foreground">
-                    Your reservation is successful
+                    Votre réservation a été effectuée avec succès
                 </h2>
                 <video
                     src="/assets/checkbox.webm"

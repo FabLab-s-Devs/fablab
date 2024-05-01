@@ -11,6 +11,7 @@ import ReservationSuccess from "@/components/rootpage/reserve/reservationSuccess
 import { useState } from "react";
 import ReserveStepper from "./reserveStepper";
 import { createReservation } from "@/lib/actions/reservation.actions";
+import { sendConfirmation } from "@/lib/actions/resend.actions";
 
 function ReserveButton({ user }: any) {
     const [date, setDate] = useState<Date | null>(null);
@@ -22,32 +23,41 @@ function ReserveButton({ user }: any) {
                     type="submit"
                     className="mr-3 px-3 py-2 bg-amber-500 text-white hover:bg-amber-600 rounded-sm"
                 >
-                    Reserve Now
+                    Réservez maintenant
                 </button>
             </DialogTrigger>
             <DialogContent className="px-6 flex items-start justify-center max-w-96 rounded-md flex-col gap-6">
                 <div className="flex w-full flex-col gap-4">
-                    {
-						user && user.teamId ?
-						(<ReserveStepper
-                        date={date}
-                        setDate={setDate}
-                        selectedPeriod={period}
-                        setSelectedPeriod={setPeriod}
-                        Footer={<Footer date={date} period={period} teamId={user.teamId} />}
-                    	/>)
-						:
-						(
-							<div className="text-red-500">You must be a chef to reserve.</div>
-						)
-					}
+                    {user && user.teamId ? (
+                        <ReserveStepper
+                            date={date}
+                            setDate={setDate}
+                            selectedPeriod={period}
+                            setSelectedPeriod={setPeriod}
+                            Footer={
+                                <Footer
+                                    date={date}
+                                    period={period}
+                                    user={user}
+                                />
+                            }
+                        />
+                    ) : (
+                        <div className="text-red-500">
+                            Vous devez être chef d'équipe pour réserver. Si vous
+                            pensez que c'est une erreur, contactez
+                            <a href="mailto:ayoub.moufid@e-polytechnique.ma">
+                                ayoub.moufid@e-polytechnique.ma
+                            </a>
+                        </div>
+                    )}
                 </div>
             </DialogContent>
         </Dialog>
     );
 }
 
-const Footer = ({ date, period, teamId }: any) => {
+const Footer = ({ date, period, user }: any) => {
     const {
         nextStep,
         prevStep,
@@ -66,19 +76,36 @@ const Footer = ({ date, period, teamId }: any) => {
         setError("");
         if (label == "Date") {
             if (!date) {
-                setError("You must choose a date.");
+                setError("Vous devez choisir une date.");
                 return;
             }
             nextStep();
         } else if (!period || !["1", "2", "3", "4"].includes(period)) {
-            setError("You must choose a correct period.");
+            setError("Vous devez choisir une période correcte.");
         } else {
             try {
-                const reservation = { teamId, date, period: parseInt(period) };
+                const reservation = {
+                    teamId: user?.teamId,
+                    date,
+                    period: parseInt(period),
+                };
                 const resResult = await createReservation(reservation);
-                resResult.error ? setError(resResult.error) : nextStep();
+                if (resResult.error) {
+                    setError(resResult.error);
+                } else {
+                    try {
+                        await sendConfirmation({
+                            email: user.email,
+                            date,
+                            period,
+                        });
+                    } catch (error) {}
+                    nextStep();
+                }
             } catch (error) {
-                setError("An unexpected error occurred. Please try again.");
+                setError(
+                    "Une erreur inattendue est survenue. Veuillez réessayer."
+                );
             }
         }
     };
@@ -94,7 +121,7 @@ const Footer = ({ date, period, teamId }: any) => {
                             size="sm"
                             className="w-full text-center hover:bg-primary"
                         >
-                            close
+                            Fermer
                         </Button>
                     </DialogClose>
                 ) : (
@@ -106,7 +133,7 @@ const Footer = ({ date, period, teamId }: any) => {
                             variant="secondary"
                             className="hover:bg-secondary"
                         >
-                            Prev
+                            Précédent
                         </Button>
                         <Button
                             size="sm"
@@ -114,10 +141,10 @@ const Footer = ({ date, period, teamId }: any) => {
                             className="hover:bg-primary"
                         >
                             {isLastStep
-                                ? "Finish"
+                                ? "Terminer"
                                 : isOptionalStep
-                                ? "Skip"
-                                : "Next"}
+                                ? "Passer"
+                                : "Suivant"}
                         </Button>
                     </>
                 )}

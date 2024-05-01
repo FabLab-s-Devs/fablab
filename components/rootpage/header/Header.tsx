@@ -32,7 +32,7 @@ export const Header = async () => {
                     href="/sign-in"
                     className="mr-3 px-3 py-1 bg-amber-500 text-white hover:bg-amber-600 rounded-sm"
                 >
-                    Sign In
+                    Se Connecter
                 </Link>
             )}
         </header>

@@ -27,7 +27,7 @@ function ReserveStepper({
                     <Step key={name} {...stepProps}>
                         {name === "Date" ? (
                             <PickDate date={date} setDate={setDate} />
-                        ) : name === "Period" ? (
+                        ) : name === "Période" ? (
                             <PickPeriod
                                 date={date}
                                 selectedPeriod={selectedPeriod}

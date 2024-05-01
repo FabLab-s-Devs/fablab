@@ -44,18 +44,27 @@ function PickPeriod({ date, selectedPeriod, setSelectedPeriod }: any) {
     return (
         <div className="flex flex-col gap-2 items-start justify-center w-full">
             <h2 className="text-[14px] text-start font-medium text-foreground">
-                Pick The Period
+                Choisissez la période
             </h2>
             <div className="w-full space-y-1">
                 {Object.keys(periods).map((period: string) => {
-                    const isFull = periods[period] >= (max);
+                    const isFull = periods[period] >= max;
                     return (
-                        <div key={period} onClick={() => handlePeriodClick(period)} className={cn("p-2 flex justify-between items-center w-full rounded-sm", selectedPeriod === period ? "bg-blue-200" : isFull ? "bg-red-500 text-white" : "bg-slate-100")}>
-                            <div>
-                                {periodsMap[period]}
-                            </div>
+                        <div
+                            key={period}
+                            onClick={() => handlePeriodClick(period)}
+                            className={cn(
+                                "p-2 flex justify-between items-center w-full rounded-sm",
+                                selectedPeriod === period
+                                    ? "bg-blue-200"
+                                    : isFull
+                                    ? "bg-red-500 text-white"
+                                    : "bg-slate-100"
+                            )}
+                        >
+                            <div>{periodsMap[period]}</div>
                             <div className="font-light text-[14px]">
-                                {isFull ? "Full" : `${periods[period]}/${max}`}
+                                {isFull ? "Complet" : `${periods[period]}/${max}`}
                             </div>
                         </div>
                     );

@@ -26,9 +26,9 @@ export const MobileNavMenu = () => (
                     mobile={true}
                 />
                 <NavLink href="/">Home</NavLink>
-                <NavLink href="#about">About Us</NavLink>
-                <NavLink href="/projects">Projects</NavLink>
-                <NavLink href="/news">News</NavLink>
+                <NavLink href="#about">A Propos</NavLink>
+                <NavLink href="/projects">Projets</NavLink>
+                <NavLink href="/news">Actualités</NavLink>
             </nav>
         </SheetContent>
     </Sheet>

@@ -48,7 +48,7 @@ export default async function News() {
                       {post.description}
                     </p>
                     <Button asChild className="w-full mt-5">
-                      <Link href={`/news/${post.slug}`}>Read more</Link>
+                      <Link href={`/news/${post.slug}`}>En savoir plus</Link>
                     </Button>
                   </CardContent>
                 </>

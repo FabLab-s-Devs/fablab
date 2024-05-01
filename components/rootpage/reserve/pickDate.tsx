@@ -25,7 +25,11 @@ function PickDate({ date, setDate }: any) {
                         )}
                     >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? format(date, "PPP") : <span>Pick a date</span>}
+                        {date ? (
+                            format(date, "PPP")
+                        ) : (
+                            <span>Choisissez une date</span>
+                        )}
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
@@ -36,14 +40,18 @@ function PickDate({ date, setDate }: any) {
                         disabled={(date) => {
                             const today = new Date();
                             today.setHours(0, 0, 0, 0);
-                            return date < today || isSunday(date) || !isWithinInterval(date, getWeekDate());
+                            return (
+                                date < today ||
+                                isSunday(date) ||
+                                !isWithinInterval(date, getWeekDate())
+                            );
                         }}
                         initialFocus
                     />
                 </PopoverContent>
             </Popover>
         </div>
-    )
+    );
 }
 
 export default PickDate

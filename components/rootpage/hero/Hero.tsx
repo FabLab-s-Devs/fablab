@@ -25,11 +25,11 @@ async function Hero() {
                     <div className="text-center lg:text-left lg:bg-cover lg:bg-no-repeat lg:bg-center lg:bg-opacity-50 lg:w-full lg:h-full lg:flex lg:flex-col lg:justify-center lg:p-8 lg:py-16">
                         <div className="text-center">
                             <h1 className="text-3xl max-w-5xl text-center mx-auto md:text-7xl  font-bold mb-4 text-white text-transparent bg-clip-text">
-                                Unleash Your{" "}
+                                Déchaînez Votre{" "}
                                 <span className="text-amber-500">
-                                    Creativity
+                                    Creativité
                                 </span>{" "}
-                                in Fablab Universiapolis
+                                Au Fablab Universiapolis
                             </h1>
                             <div>
                                 {user ? (
@@ -39,7 +39,7 @@ async function Hero() {
                                         href="/sign-in"
                                         className="mr-3 px-3 py-2 bg-amber-500 text-white hover:bg-amber-600 rounded-sm"
                                     >
-                                        Reserve Now
+                                        Réserver Maintenant
                                     </Link>
                                 )}
                             </div>
