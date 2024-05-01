@@ -43,12 +43,16 @@ function ReserveButton({ user }: any) {
                             }
                         />
                     ) : (
-                        <div className="text-red-500">
-                            Vous devez être chef d'équipe pour réserver. Si vous
-                            pensez que c'est une erreur, contactez
-							<br/>
-                            <a href="mailto:ayoub.moufid@e-polytechnique.ma">
-                                ayoub.moufid@e-polytechnique.ma
+                        <div className="w-full p-4 bg-white">
+                            <p className="font-semibold text-red-500">Erreur de Réservation</p>
+                            <p>Vous devez être chef d'équipe pour réserver.
+                                Si vous pensez que c'est une erreur, contactez:
+                            </p>
+                            <a
+                                href="mailto:fablab@e-polytechnique.ma"
+                                className="font-bold"
+                            >
+                                fablab@e-polytechnique.ma
                             </a>
                         </div>
                     )}
