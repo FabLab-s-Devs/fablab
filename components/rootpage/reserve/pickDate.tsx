@@ -46,7 +46,6 @@ function PickDate({ date, setDate }: any) {
                                 !isWithinInterval(date, getWeekDate())
                             );
                         }}
-                        initialFocus
                     />
                 </PopoverContent>
             </Popover>
