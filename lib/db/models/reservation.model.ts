@@ -28,13 +28,6 @@ const ReservationSchema = new Schema({
     date: {
         type: Date,
         required: true,
-        validate: {
-            validator: function (value: Date) {
-                const startOfToday = new Date();
-                startOfToday.setHours(0, 0, 0, 0);
-                return value >= startOfToday;
-            },
-        },
     },
     period: {
         type: Number,
