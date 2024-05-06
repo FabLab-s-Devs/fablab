@@ -63,6 +63,7 @@ function ReserveButton({ user }: any) {
 }
 
 const Footer = ({ date, period, user }: any) => {
+    const [loading, setLoading] = useState(false);
     const {
         nextStep,
         prevStep,
@@ -89,12 +90,14 @@ const Footer = ({ date, period, user }: any) => {
             setError("Vous devez choisir une période correcte.");
         } else {
             try {
+                setLoading(true);
                 const reservation = {
                     teamId: user?.teamId,
                     date,
                     period: parseInt(period),
                 };
                 const resResult = await createReservation(reservation);
+                setLoading(false);
                 if (resResult.error) {
                     setError(resResult.error);
                 } else {
@@ -143,10 +146,11 @@ const Footer = ({ date, period, user }: any) => {
                         <Button
                             size="sm"
                             onClick={nextPage}
+                            disabled={loading}
                             className="hover:bg-primary"
                         >
                             {isLastStep
-                                ? "Confirmer"
+                                ? loading ? "Reserving..." : "Confirmer"
                                 : isOptionalStep
                                 ? "Passer"
                                 : "Suivant"}
