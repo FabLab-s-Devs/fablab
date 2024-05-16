@@ -1,6 +1,14 @@
 "use server";
 import { format } from "date-fns";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'ayoubmoufid883@gmail.com',
+    pass: process.env.MAIL_SEC
+  }
+});
 
 interface ConfirmationParams {
     email: string;
@@ -20,7 +28,6 @@ export async function sendConfirmation({
     date,
     period,
 }: ConfirmationParams) {
-    const resend = new Resend(process.env.RESEND_API_KEY);
     const periodTime = periodsMap[period] || periodsMap["1"];
     const content = `
    <!DOCTYPE html>
@@ -56,12 +63,20 @@ export async function sendConfirmation({
 		</body>
 	</html>
     `;
-    const { data } = await resend.emails.send({
-        from: "Fablab <onboarding@resend.dev>",
-        to: [email],
-        subject: "Confirmation de Réservation",
-        html: content,
-    });
 
-    console.log(data);
+	var mailOptions = {
+		from: 'Fablab <ayoub.moufid@e-polytechnique.ma>',
+		to: email.trim(),
+		subject: 'Confirmation de Réservation',
+        html: content,
+	  };
+	
+
+	transporter.sendMail(mailOptions, function(error, info){
+	if (error) {
+		console.log(error);
+	} else {
+		console.log('Email sent: ' + info.response);
+	}
+	});
 }
