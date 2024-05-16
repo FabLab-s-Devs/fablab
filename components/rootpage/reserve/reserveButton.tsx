@@ -12,9 +12,11 @@ import { useState } from "react";
 import ReserveStepper from "./reserveStepper";
 import { createReservation } from "@/lib/actions/reservation.actions";
 import { sendConfirmation } from "@/lib/actions/resend.actions";
+import { format } from "date-fns";
 
 function ReserveButton({ user }: any) {
-    const [date, setDate] = useState<Date | null>(null);
+
+    const [date, setDate] = useState<Date | null>(new Date());
     const [period, setPeriod] = useState<string>("1");
     return (
         <Dialog>
@@ -104,7 +106,7 @@ const Footer = ({ date, period, user }: any) => {
                     try {
                         await sendConfirmation({
                             email: user.email,
-                            date,
+                            date: format(date, "PPP"),
                             period,
                         });
                     } catch (error) {}

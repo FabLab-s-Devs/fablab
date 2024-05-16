@@ -12,7 +12,7 @@ var transporter = nodemailer.createTransport({
 
 interface ConfirmationParams {
     email: string;
-    date: Date;
+    date: string;
     period: keyof typeof periodsMap;
 }
 
@@ -48,7 +48,7 @@ export async function sendConfirmation({
 				<h1>Confirmation de Réservation</h1>
 				<p>Bonjour,</p>
 				<p>Merci pour votre réservation. Voici les détails de votre réservation :</p>
-				<p><strong>Date :</strong>${format(date, "PPP")}</p>
+				<p><strong>Date :</strong>${date}</p>
 				<p><strong>Période :</strong>${periodTime}</p>
 				<h2>Règles d'utilisation</h2>
 				<ul>
@@ -63,7 +63,6 @@ export async function sendConfirmation({
 		</body>
 	</html>
     `;
-
 	var mailOptions = {
 		from: 'Fablab <ayoub.moufid@e-polytechnique.ma>',
 		to: email.trim(),
