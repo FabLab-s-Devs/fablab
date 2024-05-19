@@ -20,7 +20,8 @@ const TableRow = ({ id, name, email1, email2, status }: { id: string, name: stri
 export default async function FetchReservations() {
     const period = getNextPeriod()
     const reservations = await getReservationsByPeriod(period);
-    
+    console.log("Period: ", period);
+    console.log("Reservations: ", reservations);
     return (
         <div className="text-black w-full">
             <div className="px-10 py-10">
