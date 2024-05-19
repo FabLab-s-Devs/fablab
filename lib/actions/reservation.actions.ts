@@ -86,7 +86,7 @@ export async function getReservation(resId: string) {
 }
 
 
-export async function getReservations(teamId?: string, date?: Date, place?: string, week?: boolean) {
+export async function getReservations(teamId?: string, date?: Date, place?: string, week?: boolean, period?: number) {
     const filter: any  = {};
 
     if (date) {
@@ -104,13 +104,18 @@ export async function getReservations(teamId?: string, date?: Date, place?: stri
         filter.teamId = teamId
     }
 
+    if (period) {
+        filter.period = period
+    }
+
     if (place) {
         filter.place = place
     }
 
     try {
         await connectToDB();
-        const reservations = await Reservation.find(filter);
+        const reservations = await Reservation.find(filter).populate('teamId');
+        console.log(reservations);
         return JSON.parse(JSON.stringify(reservations));
     } catch (error) {
         console.error('Failed to get reservation:', error);
@@ -137,6 +142,18 @@ export async function getPeriodCountByDate(date: Date, place?: string) {
         })
 
         return periodCount;
+    } catch (error) {
+        console.error('Failed to get reservations by date:', error);
+        throw error;
+    }
+}
+
+export async function getReservationsByPeriod(period: number, place?: string) {
+    try {
+        await connectToDB();
+        const reservations = await getReservations(undefined, new Date(), place, undefined, period);
+
+        return reservations;
     } catch (error) {
         console.error('Failed to get reservations by date:', error);
         throw error;

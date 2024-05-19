@@ -12,11 +12,10 @@ import { useState } from "react";
 import ReserveStepper from "./reserveStepper";
 import { createReservation } from "@/lib/actions/reservation.actions";
 import { sendConfirmation } from "@/lib/actions/resend.actions";
-import { format } from "date-fns";
+import { format, isSunday } from "date-fns";
 
 function ReserveButton({ user }: any) {
-
-    const [date, setDate] = useState<Date | null>(new Date());
+    const [date, setDate] = useState<Date | null>(!isSunday(new Date()) ? new Date() : null);
     const [period, setPeriod] = useState<string>("1");
     return (
         <Dialog>
@@ -99,7 +98,6 @@ const Footer = ({ date, period, user }: any) => {
                     period: parseInt(period),
                 };
                 const resResult = await createReservation(reservation);
-                setLoading(false);
                 if (resResult.error) {
                     setError(resResult.error);
                 } else {
@@ -110,6 +108,7 @@ const Footer = ({ date, period, user }: any) => {
                             period,
                         });
                     } catch (error) {}
+                    setLoading(false);
                     nextStep();
                 }
             } catch (error) {

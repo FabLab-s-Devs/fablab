@@ -5,7 +5,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { cn, getWeekDate } from "@/lib/utils"
+import { cn, getNextWeek, getWeekDate } from "@/lib/utils"
 import { CalendarIcon } from "@radix-ui/react-icons"
 import { format, isSunday, isWithinInterval } from "date-fns"
 
@@ -40,10 +40,12 @@ function PickDate({ date, setDate }: any) {
                         disabled={(date) => {
                             const today = new Date();
                             today.setHours(0, 0, 0, 0);
+                            if (isSunday(today)) 
+                                return (!isWithinInterval(date, getNextWeek(today)) || isSunday(date))
                             return (
                                 date < today ||
-                                isSunday(date) ||
-                                !isWithinInterval(date, getWeekDate())
+                                !isWithinInterval(date, getWeekDate(today)) ||
+                                isSunday(date)
                             );
                         }}
                     />
